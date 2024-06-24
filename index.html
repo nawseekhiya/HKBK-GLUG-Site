@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HKBK GLUG</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header-wrapper">
+      <div class="logo">
         <h1>HKBK GLUG</h1>
-        <p>Empowering Freedom and Collaboration</p>
+      </div>
+      <nav class="navbar">
+        <button onclick="location.href='#home'">Home</button>
+        <button onclick="location.href='#about'">About Us</button>
+        <button onclick="location.href='#team'">Meet the Team</button>
+        <button onclick="location.href='#events'">Events</button>
+        <button onclick="location.href='#resources'">Resources</button>
+        <button onclick="location.href='#contact'">Contact</button>
+      </nav>
     </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#team">Meet the Team</a>
-        <a href="#events">Events</a>
-        <a href="#resources">Resources</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="container">
-        <div class="content" id="home">
-            <h2>Welcome to the HKBK GLUG</h2>
-            <p>Join us in exploring and contributing to the world of Free and Open Source Software (FOSS). Our club is dedicated to promoting the values of freedom, collaboration, and transparency in technology.</p>
+
+    <div class="main-container">
+      <div class="content-container">
+        <div class="content" id="banner">
+          <div class="banner-head">
+            <p id="hkbk">HKBK</p>
+            <p id="glug">GLUG</p>
+          </div>
+          <p id="banner-text">
+            Join us in exploring and contributing to the world of Free and Open
+            Source Software (FOSS). Our club is dedicated to promoting the
+            values of freedom, collaboration, and transparency in technology.
+          </p>
+          <button class="button" role="button">Register Now</button>
         </div>
-        <div class="content" id="about">
-            <h2>About Us</h2>
-            <p>We are a community of passionate individuals who believe in the power of open source software. Our mission is to educate, collaborate, and innovate using free and open source tools. We are proud to be associated with FSMK (Free Software Movement Karnataka) and to host a GLUG (GNU Linux User Group) in our college.</p>
-        </div>
-    
         <div class="content" id="events">
-            <h2>Events</h2>
-            <p>Stay tuned for our upcoming events, workshops, and hackathons where you can learn, share, and grow your skills in open source development.</p>
+          <div class="events-head">
+            <p id="upcoming-events-heading">Upcoming Events</p>
+            <span> Upcoming events displayed here </span>
+          </div>
         </div>
-        <div class="content" id="resources">
-            <h2>Resources</h2>
-            <p>Explore our curated list of resources, including tutorials, documentation, and tools to help you get started with open source software.</p>
-        </div>
-        <div class="content" id="contact">
-            <h2>Contact Us</h2>
-            <p>Have questions or want to get involved? Reach out to us via email at <a href="mailto:hkbkglug@example.com">hkbkglug@example.com</a> or follow us on social media.</p>
-        </div>
+      </div>
     </div>
     <footer>
-        <p>&copy; 2024 HKBK GLUG. All rights reserved.</p>
+      <p>&copy; 2024 HKBK GLUG. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>
