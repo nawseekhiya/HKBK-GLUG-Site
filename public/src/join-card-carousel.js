@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (counter >= cards.length) {
       counter = 0;
     }
-    carouselSlide.style.transform = `translateX(${-counter * 100}%)`;
+    carouselSlide.style.transform = `translateX(${-counter * 105}%)`;
   }
 
   setInterval(slideCards, 5000);
