@@ -1,6 +1,7 @@
 # HKBK GLUG Site
 
-Welcome to the HKBK GLUG (GNU/Linux User Group) site repository! This repository contains the files for the HKBK GLUG website, which is a static HTML site built for the official GLUG of HKBKCE, Bangalore promoting free and open-source software (FOSS) within the community.
+Welcome to the HKBK GLUG (GNU/Linux User Group) site repository! This repository contains the files for the HKBK GLUG website, which is a static HTML website built for the official GLUG of HKBKCE, Bangalore, in collaboration with FSMK (Free Software Movement Karnataka), a non-profit organisation promoting free and open-source software (FOSS) within the community.
+
 
 ## Project Overview
 
