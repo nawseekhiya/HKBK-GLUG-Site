@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Background Transition</title>
+  <style>
+    body {
+        min-height: 100vh;
+    }
+    .content {
+      opacity: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease-in-out;
+      z-index: 999;
+      background-color: lightblue; /* For visibility */
+    }
+
+    .content.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="content" id="element1">Element 1</div>
+  <div class="content" id="element2">Element 2</div>
+  <div class="content" id="element3">Element 3</div>
+
+  <script>
+    function isInView(element) {
+  const rect = element.getBoundingClientRect();
+  const buffer = 100; // Buffer in pixels
+
+  return (
+    rect.top < (window.innerHeight || document.documentElement.clientHeight) + buffer &&
+    rect.bottom > -buffer &&
+    rect.left < (window.innerWidth || document.documentElement.clientWidth) + buffer &&
+    rect.right > -buffer
+  );
+}
+
+
+    function handleScroll() {
+      const elements = document.querySelectorAll('.content');
+      elements.forEach(element => {
+        if (isInView(element)) {
+          element.classList.add('visible');
+        } else {
+          element.classList.remove('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+  </script>
+</body>
+</html>

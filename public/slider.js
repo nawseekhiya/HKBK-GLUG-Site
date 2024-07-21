@@ -1,29 +1,40 @@
 let slider = tns({
-    container: ".the-team-behind-slider-wrapper",
-    slideBy: "1",
-    items: "3",
-    edgePadding: "30",
-    autoplay: true,
-    autoplayButtonOutput: true,
-    center: true,
-    speed: "300",
-    loop: true,
-    // responsive: {
-    //   1600: {
-    //     items: "4",
-    //     gutter: "10"
-    //   },
-    //   1200: {
-    //     items: "1",
-    //     gutter: "10"
-    //   },
-    //   800: {
-    //     items: "3",
-    //     gutter: "10"
-    //   },
-    //   600: {
-    //     items: "4",
-    //     gutter: "20"
-    //   }
-    // }
-  });
+  container: ".the-team-behind-slider-wrapper",
+  items: 2,
+  // startIndex: 3,
+  autoplay: true,
+  autoplayTimeout: 3000,
+  navPosition: "bottom",
+  autoplayHoverPause: true,
+  navContainer: ".the-team-behind-nav-container",
+  autoplayButtonOutput: false,
+  mouseDrag: true,
+  controls: false,
+  responsive: {
+    350: {
+      items: 1,
+      controls: false,
+      edgePadding: 50,
+    },
+    500: {
+      items: 1,
+    },
+    800: {
+      items: 1
+    },
+    1100: {
+      items: 2
+    },
+    1600: {
+      items: 3
+    },
+    1400: {
+      items: 2
+    },
+    1100:{
+      items: 1.5
+    }
+  },
+  swipeAngle: false,
+  speed: 500,
+});

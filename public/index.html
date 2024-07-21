@@ -17,9 +17,6 @@
     />
     <!-- <link rel="stylesheet" href="./src/tiny-slider.scss" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
-    <!-- <script src="./src/carousel.js"></script>
-    <script src="./src/join-card-carousel.js"></script> -->
-    <!-- <script src="./src/tiny-slider.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
   </head>
   <body>
@@ -29,7 +26,7 @@
         <p id="logo-glug">GLUG</p>
       </div>
       <nav class="navbar">
-        <button onclick="location.href='#home'">Home</button>
+        <button onclick="location.href='#blog'">Blog</button>
         <button onclick="location.href='#about'">About Us</button>
         <button onclick="location.href='#the-team-behind'">
           Meet the Team
@@ -47,6 +44,7 @@
             <p id="banner-hkbk">HKBK</p>
             <p id="banner-glug">GLUG</p>
           </div>
+          <!-- <img src="./res/developer_male.jpg" alt=""> -->
           <p id="banner-text">
             Join us in exploring and contributing to the world of Free and Open
             Source Software (FOSS). Our club is dedicated to promoting the
@@ -149,8 +147,12 @@
 
         <div class="content" id="quote-1">
           <div class="image-placeholder">
-            <img src="./res/linus.jpeg" class="circular-image" />
-            <h4>Linus Torvalds</h4>
+            <img src="./res/stallman.jpg" class="circular-image" />
+            <h3>Richard Stallman</h3>
+          </div>
+          <div class="quote-container">
+            <i class="bi bi-quote"></i>
+            <span>Free software is software that respects your freedom and the social solidarity of your community. So it's free as in freedom.</span>
           </div>
         </div>
 
@@ -161,7 +163,11 @@
         <div class="content" id="quote-2">
           <div class="image-placeholder">
             <img src="./res/linus.jpeg" class="circular-image" />
-            <h4>Linus Torvalds</h4>
+            <h3>Linus Torvalds</h3>
+          </div>
+          <div class="quote-container">
+            <i class="bi bi-quote"></i>
+            <span>In open source, we feel strongly that to really do something well, you have to get a lot of people involved.</span>
           </div>
         </div>
 
@@ -194,7 +200,9 @@
                         cupiditate saepe quos voluptatem modi natus
                         laudantium.</span>
                     </div>
-                    <div class="card-contact-container"><p>Contact links</p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -219,7 +227,9 @@
                         cupiditate saepe quos voluptatem modi natus
                         laudantium.</span>
                     </div>
-                    <div class="card-contact-container"><p>Contact links</p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -244,7 +254,9 @@
                         cupiditate saepe quos voluptatem modi natus
                         laudantium.</span>
                     </div>
-                    <div class="card-contact-container"><p><p>Contact links</p></p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -270,7 +282,9 @@
                         laudantium.</span
                       >
                     </div>
-                    <div class="card-contact-container"><p><p>Contact links</p></p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -296,7 +310,9 @@
                         laudantium.</span
                       >
                     </div>
-                    <div class="card-contact-container"><p><p>Contact links</p></p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -322,7 +338,9 @@
                         laudantium.</span
                       >
                     </div>
-                    <div class="card-contact-container"><p><p>Contact links</p></p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -348,7 +366,9 @@
                         laudantium.</span
                       >
                     </div>
-                    <div class="card-contact-container"><p><p>Contact links</p></p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -374,7 +394,9 @@
                         laudantium.</span
                       >
                     </div>
-                    <div class="card-contact-container"><p><p>Contact links</p></p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
                 </div>
 
@@ -400,9 +422,19 @@
                         laudantium.</span
                       >
                     </div>
-                    <div class="card-contact-container"><p>Contact links</p></div>
+                    <div class="card-contact-container">
+                      <i class="bi bi-github"></i>
+                    </div>
                   </div>
-                </div> 
+                </div>
+              </div>
+              <div class="the-team-behind-nav-container">
+                <i class="bi bi-circle-fill"></i>
+                <i class="bi bi-circle-fill"></i>
+                <i class="bi bi-circle-fill"></i>
+                <i class="bi bi-circle-fill"></i>
+                <i class="bi bi-circle-fill"></i>
+                <i class="bi bi-circle-fill"></i>
               </div>
             </div>
           </div>
@@ -410,12 +442,62 @@
 
         <div class="content" id="join-us">
           <p id="join-us-head-text">Why Join Us?</p>
-          <div class="join-card-carousel">
-            <div class="join-card-carousel-slide">
-              <div class="join-card">Learn from Experts</div>
-              <div class="join-card">Collaborate with Peers</div>
-              <div class="join-card">Participate in Events</div>
-              <div class="join-card">Access Exclusive Resources</div>
+          <div class="join-us-container">
+            <div class="empower join-card">
+              <div class="icon-title">
+                <i class="bi bi-book"></i>
+                <p>Open-Source Knowledge</p>
+              </div>
+              <p class="join-subtext empower-subtext">Empower yourself with Free and Open Source Knowledge</p>
+            </div>
+            <div class="community join-card">
+              <div class="icon-title">
+                <i class="bi bi-people"></i>
+                <p>Community</p>
+              </div>
+              <p class="join-subtext community-subtext">Join and Collaborate with like-minded peers on exciting projects</p>
+            </div>
+            <div class="tools join-card">
+              <div class="icon-title">
+                <i class="bi bi-tools"></i>
+                <p>Technologies</p>
+              </div>
+              <p class="join-subtext tools-subtext">Learn about F0SS tools and Technologies used in the industry</p>
+            </div>
+            <div class="skill join-card">
+              <div class="icon-title">
+                <i class="bi bi-laptop"></i>
+                <p>Skill</p>
+              </div>
+              <p class="join-subtext skill-subtext">Build valuable technical skills that are highly sought after in the tech industry</p>
+            </div>
+            <div class="projects join-card">
+              <div class="icon-title">
+                <i class="bi bi-lightbulb"></i>
+                <p>Contribute</p>
+              </div>
+              <p class="join-subtext projects-subtext">Collaborate on exciting open-source projects and make a real impact</p>
+            </div>
+            <div class="activities join-card">
+              <div class="icon-title">
+                <i class="bi bi-trophy"></i>
+                <p>Activities</p>
+              </div>
+              <p class="join-subtext activities-subtext">Participate in fun and engaging activities like hackathons, workshops, and competitions</p>
+            </div>
+            <div class="freedom join-card">
+              <div class="icon-title">
+                <i class="bi bi-shield"></i>
+                <p>Digital Freedom</p>
+              </div>
+              <p class="join-subtext freedom-subtext">Be a part of the movement that supports freedom of knowledge and software and advocates for user rights in the digital world</p>
+            </div>
+            <div class="blog join-card">
+              <div class="icon-title">
+                <i class="bi bi-newspaper"></i>
+                <p>Blog</p>
+              </div>
+              <p class="join-subtext blog-subtext">Get the latest news, insights and developments in the world of FOSS, and learn from tutorials and articles written by seasoned contributors</p>
             </div>
           </div>
         </div>
@@ -475,5 +557,44 @@
       >
     </div>
     <script src="slider.js"></script>
+    <script src="coloring.js"></script>
+    <script>
+      function isInView(element) {
+  const rect = element.getBoundingClientRect();
+  const buffer = 10; // Buffer in pixels
+
+  return (
+    rect.top < (window.innerHeight || document.documentElement.clientHeight) + buffer &&
+    rect.bottom > -buffer &&
+    rect.left < (window.innerWidth || document.documentElement.clientWidth) + buffer &&
+    rect.right > -buffer
+  );
+}
+
+
+    // Function to handle scroll events
+    function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+const handleScroll = debounce(() => {
+  const elements = document.querySelectorAll('.content');
+  elements.forEach(element => {
+    if (isInView(element)) {
+      element.classList.add('visible');
+    } else {
+      element.classList.remove('visible');
+    }
+  });
+}, 50); // Adjust the debounce wait time as needed
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', handleScroll);
+
+    </script>
   </body>
 </html>
