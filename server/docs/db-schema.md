@@ -43,3 +43,60 @@ Stores event details.
 
 **Indexes:**
 -   `{ date: 1 }` (For querying by date)
+
+### EventRegistration
+
+Tracks authenticated user registrations for events.
+
+| Field | Type | Required | Default | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `event` | ObjectId | Yes | - | Ref: Event |
+| `user` | ObjectId | Yes | - | Ref: User |
+| `registeredAt` | Date | No | Date.now | - |
+| `checkInStatus` | String | No | "pending" | Enum: "pending", "checked-in", "cancelled", "no-show" |
+| `meta` | Map | No | - | Key-value pairs for extra info |
+| `createdAt` | Date | - | - | Auto-generated |
+| `updatedAt` | Date | - | - | Auto-generated |
+
+**Indexes:**
+-   `{ event: 1, user: 1 }` (Unique)
+-   `{ event: 1 }`
+
+### GuestRegistration
+
+Tracks guest (non-authenticated) registrations for events.
+
+| Field | Type | Required | Default | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `event` | ObjectId | Yes | - | Ref: Event |
+| `name` | String | Yes | - | Trimmed |
+| `email` | String | Yes | - | Trimmed, Lowercase, Regex validated |
+| `phone` | String | No | - | Trimmed |
+| `usn` | String | No | - | Trimmed, Uppercase |
+| `registeredAt` | Date | No | Date.now | - |
+| `checkInStatus` | String | No | "pending" | Enum: "pending", "checked-in", "cancelled", "no-show" |
+| `meta` | Map | No | - | Key-value pairs for extra info |
+| `createdAt` | Date | - | - | Auto-generated |
+| `updatedAt` | Date | - | - | Auto-generated |
+
+**Indexes:**
+-   `{ event: 1, email: 1 }` (Unique)
+-   `{ event: 1 }`
+
+### RefreshToken
+
+Stores JWT refresh tokens.
+
+| Field | Type | Required | Default | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `user` | ObjectId | Yes | - | Ref: User |
+| `tokenHash` | String | Yes | - | SHA-256 hash |
+| `expiresAt` | Date | Yes | - | - |
+| `revokedAt` | Date | No | - | - |
+| `replacedByTokenHash` | String | No | - | For rotation chains |
+| `createdAt` | Date | - | - | Auto-generated |
+| `updatedAt` | Date | - | - | Auto-generated |
+
+**Indexes:**
+-   `{ user: 1 }`
+-   `{ expiresAt: 1 }` (TTL Index)
