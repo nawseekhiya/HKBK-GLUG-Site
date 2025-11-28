@@ -2,33 +2,12 @@
 
 Base URL: `/api`
 
-## Error Handling
-
-All API errors follow a standard JSON structure:
-
-```json
-{
-  "status": "error",
-  "code": "ERROR_CODE",
-  "message": "Human readable message",
-  "details": null // Optional details object or array
-}
-```
-
-### Common Error Codes
-
-| Status | Code | Description |
-| :--- | :--- | :--- |
-| 400 | `BAD_REQUEST` | Invalid request format or parameters |
-| 400 | `VALIDATION_ERROR` | Request validation failed (details contains field errors) |
-| 401 | `UNAUTHORIZED` | Authentication required or invalid token |
-| 403 | `FORBIDDEN` | Authenticated user does not have permission |
-| 404 | `NOT_FOUND` | Resource not found |
-| 409 | `CONFLICT` | Resource conflict (e.g., duplicate email) |
-| 429 | `TOO_MANY_REQUESTS` | Rate limit exceeded |
-| 500 | `INTERNAL_SERVER_ERROR` | Unexpected server error |
-
 ## Authentication
+
+Authentication is handled via JSON Web Tokens (JWT).
+
+-   **Access Token**: Short-lived (15 minutes). Sent in `Authorization` header as `Bearer <token>`.
+-   **Refresh Token**: Long-lived (7 days). Used to obtain new access tokens.
 
 ### Register
 
@@ -39,8 +18,8 @@ All API errors follow a standard JSON structure:
 {
   "name": "John Doe",
   "email": "john@example.com",
-  "password": "password123", // Min 8 chars
-  "githubUsername": "johndoe" // Optional
+  "password": "password123",
+  "githubUsername": "johndoe"
 }
 ```
 
@@ -49,20 +28,10 @@ All API errors follow a standard JSON structure:
 {
   "status": "success",
   "data": {
-    "user": {
-      "_id": "...",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "role": "user",
-      "joinedAt": "..."
-    }
+    "user": { ... }
   }
 }
 ```
-
-**Errors:**
--   `400 Bad Request`: Validation error.
--   `409 Conflict`: Email already in use.
 
 ### Login
 
@@ -81,113 +50,88 @@ All API errors follow a standard JSON structure:
 {
   "status": "success",
   "data": {
-    "user": {
-      "_id": "...",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "role": "user",
-      ...
-    }
+    "user": { ... },
+    "accessToken": "eyJ...",
+    "refreshToken": "7f8..."
   }
 }
 ```
 
-**Errors:**
--   `401 Unauthorized`: Invalid credentials.
--   `429 Too Many Requests`: Rate limit exceeded.
+### Refresh Token
 
-## Events
-
-### List Events
-
-`GET /api/events`
-
-**Query Parameters:**
--   `page`: Page number (default: 1)
--   `limit`: Items per page (default: 20)
--   `sort`: Sort field and order (e.g., `date:asc`, `date:desc`) (default: `date:asc`)
--   `upcoming`: Filter upcoming events (`true` or `false`)
--   `tag`: Filter by tag
-
-**Response:**
-```json
-{
-  "data": [
-    {
-      "_id": "...",
-      "title": "Event Title",
-      "date": "2023-10-27T10:00:00.000Z",
-      ...
-    }
-  ],
-  "meta": {
-    "page": 1,
-    "limit": 20,
-    "total": 10,
-    "totalPages": 1
-  }
-}
-```
-
-### Get Event
-
-`GET /api/events/:id`
-
-**Response:**
-```json
-{
-  "_id": "...",
-  "title": "Event Title",
-  ...
-}
-```
-
-**Errors:**
--   `404 Not Found`: If event does not exist or is deleted.
-
-### Create Event
-
-`POST /api/events`
+`POST /api/auth/refresh`
 
 **Body:**
 ```json
 {
-  "title": "Event Title", // Required
-  "date": "2023-10-27T10:00:00.000Z", // Required, ISO Date
-  "description": "Description...",
-  "venue": "Venue Name",
-  "capacity": 100,
-  "tags": ["tag1", "tag2"],
-  "banner": "http://example.com/image.jpg"
+  "refreshToken": "7f8..."
 }
 ```
 
 **Response:**
--   `201 Created`: Returns created event.
-
-**Errors:**
--   `400 Bad Request`: Validation error.
-
-### Update Event
-
-`PUT /api/events/:id`
-
-**Body:** (Partial updates allowed)
 ```json
 {
-  "title": "Updated Title"
+  "status": "success",
+  "data": {
+    "accessToken": "eyJ...",
+    "refreshToken": "new_refresh_token..."
+  }
+}
+```
+
+### Logout
+
+`POST /api/auth/logout`
+
+**Body:**
+```json
+{
+  "refreshToken": "7f8..."
 }
 ```
 
 **Response:**
--   `200 OK`: Returns updated event.
+```json
+{
+  "status": "success",
+  "message": "Logged out successfully"
+}
+```
 
-### Delete Event
+### Get Current User
 
-`DELETE /api/events/:id`
+`GET /api/auth/me`
+
+**Headers:**
+`Authorization: Bearer <access_token>`
 
 **Response:**
--   `204 No Content`
+```json
+{
+  "status": "success",
+  "data": {
+    "user": { ... }
+  }
+}
+```
 
-**Notes:**
--   Soft delete is implemented. Deleted events are not returned in list or get operations.
+## Error Handling
+
+Standard error response:
+```json
+{
+  "status": "error",
+  "code": "ERROR_CODE",
+  "message": "Message"
+}
+```
+
+Common Auth Errors:
+-   `401 UNAUTHORIZED`: Invalid or expired token.
+-   `403 FORBIDDEN`: Insufficient permissions.
+
+## Events
+
+### List Events
+`GET /api/events`
+... (Standard CRUD endpoints as before)

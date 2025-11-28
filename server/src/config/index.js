@@ -5,5 +5,7 @@ export const config = {
   port: process.env.PORT || 5000,
   mongoUri: process.env.MONGO_URI,
   jwtSecret: process.env.JWT_SECRET,
+  jwtAccessExp: process.env.JWT_ACCESS_EXP || "15m",
+  jwtRefreshExp: process.env.JWT_REFRESH_EXP || "7d",
   nodeEnv: process.env.NODE_ENV || "development",
 };

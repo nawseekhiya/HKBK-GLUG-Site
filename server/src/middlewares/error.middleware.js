@@ -24,6 +24,13 @@ const errorMiddleware = (err, req, res, next) => {
       }));
       error = new BadRequestError("Validation Error", details);
     }
+    // JWT Errors
+    else if (error.name === "JsonWebTokenError") {
+      error = new UnauthorizedError("Invalid token");
+    }
+    else if (error.name === "TokenExpiredError") {
+      error = new UnauthorizedError("Token expired");
+    }
     // Default to Internal Server Error for unknown errors
     else {
       error = new InternalServerError(error.message);

@@ -3,6 +3,7 @@ import { z } from "zod";
 import * as authController from "../controllers/auth.controller.js";
 import { validate } from "../middlewares/validate.middleware.js";
 import { authLimiter } from "../middlewares/rateLimit.middleware.js";
+import { authenticate } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
@@ -19,6 +20,10 @@ const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
+const refreshSchema = z.object({
+  refreshToken: z.string().min(1, "Refresh token is required"),
+});
+
 // Routes
 router.post(
   "/register",
@@ -32,6 +37,23 @@ router.post(
   authLimiter,
   validate({ body: loginSchema }),
   authController.login
+);
+
+router.post(
+  "/refresh",
+  validate({ body: refreshSchema }),
+  authController.refresh
+);
+
+router.post(
+  "/logout",
+  authController.logout
+);
+
+router.get(
+  "/me",
+  authenticate,
+  authController.getMe
 );
 
 export default router;
