@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ValidationError } from "../utils/errors.js";
 
 export const validate = (schema) => (req, res, next) => {
   try {
@@ -21,13 +22,11 @@ export const validate = (schema) => (req, res, next) => {
     next();
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return res.status(400).json({
-        error: "Validation Error",
-        details: (error.issues || []).map((e) => ({
-          path: e.path.join("."),
-          message: e.message,
-        })),
-      });
+      const details = (error.issues || []).map((e) => ({
+        path: e.path.join("."),
+        message: e.message,
+      }));
+      return next(new ValidationError("Validation Failed", details));
     }
     next(error);
   }

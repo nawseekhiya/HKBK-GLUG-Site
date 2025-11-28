@@ -2,6 +2,31 @@
 
 Base URL: `/api`
 
+## Error Handling
+
+All API errors follow a standard JSON structure:
+
+```json
+{
+  "status": "error",
+  "code": "ERROR_CODE",
+  "message": "Human readable message",
+  "details": null // Optional details object or array
+}
+```
+
+### Common Error Codes
+
+| Status | Code | Description |
+| :--- | :--- | :--- |
+| 400 | `BAD_REQUEST` | Invalid request format or parameters |
+| 400 | `VALIDATION_ERROR` | Request validation failed (details contains field errors) |
+| 401 | `UNAUTHORIZED` | Authentication required or invalid token |
+| 403 | `FORBIDDEN` | Authenticated user does not have permission |
+| 404 | `NOT_FOUND` | Resource not found |
+| 409 | `CONFLICT` | Resource conflict (e.g., duplicate email) |
+| 500 | `INTERNAL_SERVER_ERROR` | Unexpected server error |
+
 ## Events
 
 ### List Events

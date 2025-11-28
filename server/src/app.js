@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { logger } from "./config/logger.js";
+import errorMiddleware from "./middlewares/error.middleware.js";
 
 import router from "./routes/index.js";
 
@@ -25,9 +26,6 @@ app.get("/", (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  logger.error({ err }, "Unhandled Error");
-  res.status(500).json({ error: "Internal Server Error" });
-});
+app.use(errorMiddleware);
 
 export default app;
