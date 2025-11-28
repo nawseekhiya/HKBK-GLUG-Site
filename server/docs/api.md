@@ -25,7 +25,76 @@ All API errors follow a standard JSON structure:
 | 403 | `FORBIDDEN` | Authenticated user does not have permission |
 | 404 | `NOT_FOUND` | Resource not found |
 | 409 | `CONFLICT` | Resource conflict (e.g., duplicate email) |
+| 429 | `TOO_MANY_REQUESTS` | Rate limit exceeded |
 | 500 | `INTERNAL_SERVER_ERROR` | Unexpected server error |
+
+## Authentication
+
+### Register
+
+`POST /api/auth/register`
+
+**Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123", // Min 8 chars
+  "githubUsername": "johndoe" // Optional
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "data": {
+    "user": {
+      "_id": "...",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "user",
+      "joinedAt": "..."
+    }
+  }
+}
+```
+
+**Errors:**
+-   `400 Bad Request`: Validation error.
+-   `409 Conflict`: Email already in use.
+
+### Login
+
+`POST /api/auth/login`
+
+**Body:**
+```json
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "data": {
+    "user": {
+      "_id": "...",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "user",
+      ...
+    }
+  }
+}
+```
+
+**Errors:**
+-   `401 Unauthorized`: Invalid credentials.
+-   `429 Too Many Requests`: Rate limit exceeded.
 
 ## Events
 
