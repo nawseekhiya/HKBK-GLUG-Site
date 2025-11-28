@@ -32,6 +32,10 @@ const EventSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    deletedAt: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
@@ -39,5 +43,6 @@ const EventSchema = new mongoose.Schema(
 );
 
 EventSchema.index({ date: 1 });
+EventSchema.index({ tags: 1 });
 
 export default mongoose.model("Event", EventSchema);
