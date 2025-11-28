@@ -1,6 +1,6 @@
 import { config } from "../config/index.js";
 import { logger } from "../config/logger.js";
-import { AppError, BadRequestError, ConflictError, InternalServerError } from "../utils/errors.js";
+import { AppError, BadRequestError, ConflictError, InternalServerError, UnauthorizedError } from "../utils/errors.js";
 
 const errorMiddleware = (err, req, res, next) => {
   let error = err;

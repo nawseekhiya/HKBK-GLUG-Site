@@ -135,3 +135,71 @@ Common Auth Errors:
 ### List Events
 `GET /api/events`
 ... (Standard CRUD endpoints as before)
+
+## Registrations
+
+### Register User (Authenticated)
+
+`POST /api/events/:eventId/register`
+
+**Headers:**
+`Authorization: Bearer <access_token>`
+
+**Body:**
+```json
+{
+  "meta": {
+    "tShirtSize": "L",
+    "dietaryRestrictions": "None"
+  }
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "status": "success",
+  "data": {
+    "registrationId": "60d5ec...",
+    "status": "pending",
+    "registeredAt": "2023-01-01T12:00:00Z"
+  }
+}
+```
+
+**Errors:**
+- `400 Bad Request`: Validation error or Event full.
+- `409 Conflict`: User already registered.
+
+### Register Guest
+
+`POST /api/events/:eventId/register-guest`
+
+**Body:**
+```json
+{
+  "name": "Guest Name",
+  "email": "guest@example.com",
+  "phone": "1234567890",
+  "usn": "1HK19CS001",
+  "meta": {
+    "source": "web"
+  }
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "status": "success",
+  "data": {
+    "registrationId": "60d5ec...",
+    "status": "pending",
+    "registeredAt": "2023-01-01T12:00:00Z"
+  }
+}
+```
+
+**Errors:**
+- `400 Bad Request`: Validation error or Event full.
+- `409 Conflict`: Email already registered.

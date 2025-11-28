@@ -31,3 +31,25 @@ export const validate = (schema) => (req, res, next) => {
     next(error);
   }
 };
+
+export const eventIdSchema = {
+  params: z.object({
+    eventId: z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid Event ID"),
+  }),
+};
+
+export const registerGuestSchema = {
+  body: z.object({
+    name: z.string().min(1, "Name is required").trim(),
+    email: z.string().email("Invalid email address").trim().toLowerCase(),
+    phone: z.string().optional(),
+    usn: z.string().optional(),
+    meta: z.record(z.string()).optional(),
+  }),
+};
+
+export const registerUserSchema = {
+  body: z.object({
+    meta: z.record(z.string()).optional(),
+  }),
+};
