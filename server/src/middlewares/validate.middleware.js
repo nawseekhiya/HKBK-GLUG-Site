@@ -53,3 +53,18 @@ export const registerUserSchema = {
     meta: z.record(z.string()).optional(),
   }),
 };
+
+export const userIdSchema = {
+  params: z.object({
+    id: z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid User ID"),
+  }),
+};
+
+export const contributionSchema = {
+  body: z.object({
+    title: z.string().min(1).max(200),
+    type: z.enum(["project", "talk", "workshop", "blog", "other"]),
+    link: z.string().url().optional().or(z.literal("")),
+    description: z.string().max(2000).optional(),
+  }),
+};

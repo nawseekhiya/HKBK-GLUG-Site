@@ -211,3 +211,74 @@ Common Auth Errors:
 **Errors:**
 - `400 Bad Request`: Validation error or Event full.
 - `409 Conflict`: Email already registered.
+
+## Users
+
+### Get Public Profile
+
+`GET /api/users/:id/profile`
+
+**Response (200 OK):**
+```json
+{
+  "status": "success",
+  "data": {
+    "user": {
+      "_id": "60d5ec...",
+      "name": "John Doe",
+      "avatar": "https://...",
+      "bio": "Developer",
+      "githubUsername": "johndoe",
+      "role": "user",
+      "joinedAt": "2023-01-01T00:00:00.000Z"
+    },
+    "contributions": [
+      {
+        "_id": "60d5ec...",
+        "title": "My Project",
+        "type": "project",
+        "link": "https://github.com/...",
+        "description": "Cool project",
+        "createdAt": "..."
+      }
+    ],
+    "events": [
+      {
+        "_id": "60d5ec...",
+        "title": "Hackathon 2023",
+        "date": "...",
+        "location": "..."
+      }
+    ]
+  }
+}
+```
+
+### Add Contribution
+
+`POST /api/users/:id/contributions`
+
+**Headers:**
+`Authorization: Bearer <access_token>`
+
+**Body:**
+```json
+{
+  "title": "My Project",
+  "type": "project", // project, talk, workshop, blog, other
+  "link": "https://github.com/...",
+  "description": "Description..."
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "status": "success",
+  "data": {
+    "_id": "...",
+    "title": "My Project",
+    ...
+  }
+}
+```

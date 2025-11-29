@@ -4,5 +4,6 @@ import RefreshToken from "./RefreshToken.js";
 import EventRegistration from "./EventRegistration.js";
 import GuestRegistration from "./GuestRegistration.js";
 import EmailQueue from "./EmailQueue.js";
+import UserContribution from "./UserContribution.js";
 
-export { User, Event, RefreshToken, EventRegistration, GuestRegistration, EmailQueue };
+export { User, Event, RefreshToken, EventRegistration, GuestRegistration, EmailQueue, UserContribution };
