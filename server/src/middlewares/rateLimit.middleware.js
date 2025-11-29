@@ -16,3 +16,15 @@ export const authLimiter = rateLimit({
     res.status(options.statusCode).json(options.message);
   },
 });
+
+export const githubLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 60, // Limit each IP to 60 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    status: "error",
+    code: "TOO_MANY_REQUESTS",
+    message: "Too many GitHub stats requests, please try again later.",
+  },
+});

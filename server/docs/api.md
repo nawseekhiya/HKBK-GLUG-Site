@@ -254,6 +254,33 @@ Common Auth Errors:
 }
 ```
 
+### Get GitHub Stats
+
+`GET /api/users/:id/github`
+
+**Query Params:**
+- `refresh=true` (Optional, requires auth and ownership/admin)
+
+**Response (200 OK):**
+```json
+{
+  "status": "success",
+  "data": {
+    "cached": true,
+    "stats": {
+      "followers": 100,
+      "publicRepos": 20,
+      "stars": 50,
+      "topLanguages": [
+        { "language": "JavaScript", "count": 10 },
+        { "language": "Python", "count": 5 }
+      ],
+      "lastUpdated": "2023-01-01T00:00:00.000Z"
+    }
+  }
+}
+```
+
 ### Add Contribution
 
 `POST /api/users/:id/contributions`

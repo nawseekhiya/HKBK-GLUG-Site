@@ -11,4 +11,6 @@ export const config = {
   emailProvider: process.env.EMAIL_PROVIDER || "console", // console, sendgrid, etc.
   emailQueueDriver: process.env.EMAIL_QUEUE_DRIVER || "mongo", // mongo, memory
   sendgridApiKey: process.env.SENDGRID_API_KEY,
+  githubToken: process.env.GITHUB_TOKEN,
+  githubStatsTtlHours: parseInt(process.env.GITHUB_STATS_TTL_HOURS, 10) || 24,
 };
