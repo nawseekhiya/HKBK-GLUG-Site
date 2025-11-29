@@ -8,4 +8,7 @@ export const config = {
   jwtAccessExp: process.env.JWT_ACCESS_EXP || "15m",
   jwtRefreshExp: process.env.JWT_REFRESH_EXP || "7d",
   nodeEnv: process.env.NODE_ENV || "development",
+  emailProvider: process.env.EMAIL_PROVIDER || "console", // console, sendgrid, etc.
+  emailQueueDriver: process.env.EMAIL_QUEUE_DRIVER || "mongo", // mongo, memory
+  sendgridApiKey: process.env.SENDGRID_API_KEY,
 };

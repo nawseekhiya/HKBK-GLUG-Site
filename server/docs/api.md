@@ -7,7 +7,15 @@ Base URL: `/api`
 Authentication is handled via JSON Web Tokens (JWT).
 
 -   **Access Token**: Short-lived (15 minutes). Sent in `Authorization` header as `Bearer <token>`.
+-   **Access Token**: Short-lived (15 minutes). Sent in `Authorization` header as `Bearer <token>`.
 -   **Refresh Token**: Long-lived (7 days). Used to obtain new access tokens.
+
+## Email Notifications
+
+Emails (e.g., registration confirmation) are processed asynchronously.
+-   When an action triggers an email, the API enqueues the email and returns immediately.
+-   The email is stored in an `EmailQueue` (or memory in dev) and processed by a background worker (to be implemented).
+-   This ensures API responsiveness and reliability.
 
 ### Register
 
