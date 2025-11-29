@@ -6,6 +6,24 @@ import { EmailQueue } from "../models/index.js";
 const memoryQueue = [];
 
 /**
+ * Sends an email immediately (wrapper for provider).
+ * @param {Object} payload - { to, template, vars }
+ */
+export const sendEmail = async (payload) => {
+  const { to, template, vars } = payload;
+  logger.info({ to, template }, "Sending email via provider");
+  
+  // TODO: Integrate actual provider (SendGrid, etc.)
+  // For now, just log and simulate success
+  if (config.emailProvider === "console") {
+    console.log(`[MAILER] Sending '${template}' to ${to} with vars:`, vars);
+    return true;
+  }
+  
+  // if (config.emailProvider === "sendgrid") { ... }
+};
+
+/**
  * Enqueues an email for later processing.
  * @param {Object} payload - { to, template, vars, idempotencyKey }
  * @returns {Promise<string>} - The ID of the enqueued item

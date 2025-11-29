@@ -13,4 +13,8 @@ export const config = {
   sendgridApiKey: process.env.SENDGRID_API_KEY,
   githubToken: process.env.GITHUB_TOKEN,
   githubStatsTtlHours: parseInt(process.env.GITHUB_STATS_TTL_HOURS, 10) || 24,
+  workerConcurrency: parseInt(process.env.WORKER_CONCURRENCY, 10) || 1,
+  maxEmailAttempts: parseInt(process.env.MAX_EMAIL_ATTEMPTS, 10) || 5,
+  githubRefreshBatch: parseInt(process.env.GITHUB_REFRESH_BATCH, 10) || 10,
+  jobCronExpr: process.env.JOB_CRON_EXPR || "0 * * * *", // Every hour
 };
