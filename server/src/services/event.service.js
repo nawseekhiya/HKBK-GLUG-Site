@@ -1,6 +1,6 @@
 import { Event } from "../models/index.js";
 
-export const listEvents = async (query) => {
+export const listEvents = async (query = {}) => {
   const { page = 1, limit = 20, sort = "date:asc", ...filters } = query;
   const skip = (page - 1) * limit;
 

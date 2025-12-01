@@ -135,3 +135,19 @@ export const revokeRefreshToken = async (token) => {
     await refreshToken.save();
   }
 };
+
+// register and login wrappers expected by tests
+export const register = async (userData, ipAddress = "127.0.0.1") => {
+  const user = await createUser(userData);
+  const accessToken = issueAccessToken(user);
+  const refreshToken = await issueRefreshToken(user, ipAddress);
+  return { user, accessToken, refreshToken };
+};
+
+export const login = async (email, password, ipAddress = "127.0.0.1") => {
+  const user = await verifyUser(email, password);
+  const accessToken = issueAccessToken(user);
+  const refreshToken = await issueRefreshToken(user, ipAddress);
+  return { user, accessToken, refreshToken };
+};
+

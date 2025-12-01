@@ -1,6 +1,16 @@
 import * as githubService from "../services/github.service.js";
 import { User } from "../models/index.js";
 import { NotFoundError, ForbiddenError } from "../utils/errors.js";
+import { z } from "zod";
+
+export const userIdSchema = z.object({
+  params: z.object({
+    id: z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid user ID"),
+  }),
+  query: z.object({
+    refresh: z.enum(["true", "false"]).optional(),
+  }),
+});
 
 export const getUserGithub = async (req, res, next) => {
   try {
