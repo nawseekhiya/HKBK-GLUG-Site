@@ -7,7 +7,10 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "test:ci": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --ci --coverage",
+    "test:ci": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "worker": "node src/jobs/index.js worker",

@@ -28,7 +28,9 @@ if (process.env.NODE_ENV !== 'test') {
 
 // Request logging middleware
 app.use((req, res, next) => {
-  logger.info({ method: req.method, url: req.url }, "Incoming request");
+  if (req.url !== "/healthz") {
+    logger.info({ method: req.method, url: req.url }, "Incoming request");
+  }
   next();
 });
 
@@ -38,6 +40,11 @@ app.use("/api", router);
 // Basic route
 app.get("/", (req, res) => {
   res.send("API is running...");
+});
+
+// Health check endpoint
+app.get("/healthz", (req, res) => {
+  res.status(200).json({ ok: true, timestamp: new Date().toISOString() });
 });
 
 // Error handling middleware
