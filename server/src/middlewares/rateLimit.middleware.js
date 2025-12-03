@@ -1,27 +1,56 @@
 import rateLimit from "express-rate-limit";
+import { config } from "../config/index.js";
 import { logger } from "../config/logger.js";
 
-export const authLimiter = rateLimit({
+const createLimiter = (options) => {
+  if (process.env.NODE_ENV === 'test') {
+    return (req, res, next) => next();
+  }
+  
+  return rateLimit({
+    standardHeaders: true,
+    legacyHeaders: false,
+    handler: (req, res, next, options) => {
+      logger.warn({ ip: req.ip, path: req.path }, `Rate limit exceeded: ${options.message.message}`);
+      res.status(options.statusCode).json(options.message);
+    },
+    ...options,
+  });
+};
+
+export const globalLimiter = createLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  max: config.rateLimitGlobal || 300,
   message: {
     status: "error",
     code: "TOO_MANY_REQUESTS",
-    message: "Too many login attempts, please try again later.",
-  },
-  handler: (req, res, next, options) => {
-    logger.warn({ ip: req.ip }, "Rate limit exceeded");
-    res.status(options.statusCode).json(options.message);
+    message: "Too many requests from this IP, please try again after 15 minutes",
   },
 });
 
-export const githubLimiter = rateLimit({
+export const authLimiter = createLimiter({
+  windowMs: 60 * 1000, // 1 minute
+  max: config.rateLimitAuth || 5,
+  message: {
+    status: "error",
+    code: "TOO_MANY_REQUESTS",
+    message: "Too many login/register attempts, please try again after a minute",
+  },
+});
+
+export const guestLimiter = createLimiter({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: config.rateLimitGuest || 5,
+  message: {
+    status: "error",
+    code: "TOO_MANY_REQUESTS",
+    message: "Too many guest registration attempts, please try again later",
+  },
+});
+
+export const githubLimiter = createLimiter({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 60, // Limit each IP to 60 requests per windowMs
-  standardHeaders: true,
-  legacyHeaders: false,
+  max: 60,
   message: {
     status: "error",
     code: "TOO_MANY_REQUESTS",

@@ -3,6 +3,8 @@ import * as registrationController from "../controllers/registrations.controller
 import { authenticate } from "../middlewares/auth.middleware.js";
 import { validate, eventIdSchema, registerGuestSchema, registerUserSchema } from "../middlewares/validate.middleware.js";
 
+import { guestLimiter } from "../middlewares/rateLimit.middleware.js";
+
 const router = Router();
 
 // Authenticated User Registration
@@ -17,6 +19,7 @@ router.post(
 // Guest Registration
 router.post(
   "/events/:eventId/register-guest",
+  guestLimiter,
   validate(eventIdSchema),
   validate(registerGuestSchema),
   registrationController.registerGuest

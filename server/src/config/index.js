@@ -17,4 +17,10 @@ export const config = {
   maxEmailAttempts: parseInt(process.env.MAX_EMAIL_ATTEMPTS, 10) || 5,
   githubRefreshBatch: parseInt(process.env.GITHUB_REFRESH_BATCH, 10) || 10,
   jobCronExpr: process.env.JOB_CRON_EXPR || "0 * * * *", // Every hour
+  
+  // Security
+  corsOrigins: process.env.CORS_ORIGINS,
+  rateLimitGlobal: parseInt(process.env.RATE_LIMIT_GLOBAL, 10) || 300,
+  rateLimitAuth: parseInt(process.env.RATE_LIMIT_AUTH, 10) || 5,
+  rateLimitGuest: parseInt(process.env.RATE_LIMIT_GUEST, 10) || 5,
 };

@@ -309,3 +309,31 @@ Common Auth Errors:
   }
 }
 ```
+
+## Security Policy
+
+### Rate Limiting
+To ensure service stability, the API implements the following rate limits:
+
+- **Global**: 300 requests per 15 minutes per IP.
+- **Authentication**: 5 login/register attempts per minute per IP.
+- **Guest Registration**: 5 attempts per 5 minutes per IP.
+- **GitHub Stats**: 60 requests per hour per IP.
+
+Exceeding these limits will result in a `429 Too Many Requests` response:
+```json
+{
+  "status": "error",
+  "code": "TOO_MANY_REQUESTS",
+  "message": "Too many requests..."
+}
+```
+
+### CORS
+Access is restricted to:
+- `http://localhost:3000` (Development)
+- `https://your-production-domain.com` (Production)
+
+### Sanitization
+- **NoSQL Injection**: All inputs are sanitized to remove MongoDB operators (e.g., `$ne`, `$gt`).
+- **XSS**: HTML tags are stripped from input fields to prevent Cross-Site Scripting.
